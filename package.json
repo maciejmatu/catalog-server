@@ -1,0 +1,32 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "Rest api for catalog project",
+  "main": "index.js",
+  "scripts": {
+    "start": "$(pwd)/node_modules/.bin/nodemon index.js",
+    "start:prod": "node index.js",
+    "docs": "node ./utils/document.js"
+  },
+  "author": "Maciej Matuszewski",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.0",
+    "body-parser": "^1.15.2",
+    "crypto": "0.0.3",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.6",
+    "nodemailer": "^2.7.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "comment-parser": "^0.4.0",
+    "globby": "^6.1.0",
+    "jsdoc-to-markdown": "^3.0.0",
+    "nodemon": "^1.11.0",
+    "simple-rest-docs": "^0.9.2",
+    "underscore": "^1.8.3"
+  }
+}

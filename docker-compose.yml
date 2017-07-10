@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  db:
+    container_name: catalog-app
+    image: mongo:3.4
+    networks:
+      - main
+    ports:
+      - 2017:2017
+    volumes:
+      - data:/data/db
+  web:
+    depends_on:
+      - db
+    build: .
+    image: catalog_app
+    ports:
+      - 8080:8080
+    networks:
+      - main
+    volumes:
+      - ./:/www/app
+    environment:
+      PORT: 8080
+      DATABASE_URL: mongodb://db:27017/catalogapp
+      NODE_ENV: development
+    command: npm start
+
+volumes:
+  data:
+
+networks:
+  main:
+    driver: bridge
