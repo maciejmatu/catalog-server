@@ -1,6 +1,6 @@
-const passport = require('passport');
-const User = require('../../models/userModel');
-const LocalStrategy = require('passport-local').Strategy;
+import * as Passport from 'passport';
+import User from '../../models/userModel';
+import { Strategy as LocalStrategy } from 'passport-local';
 
 const strategySettings = {
 	usernameField: 'email'
@@ -27,7 +27,7 @@ const strategyCallback = (email, password, done) => {
 }
 
 const localStrategy = () => {
-	passport.use(new LocalStrategy(strategySettings, strategyCallback));
+	Passport.use(new LocalStrategy(strategySettings, strategyCallback));
 }
 
-module.exports = localStrategy;
+export default localStrategy;
