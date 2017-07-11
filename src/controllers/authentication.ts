@@ -1,6 +1,6 @@
 import User from '../models/userModel';
 import { Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 import config from '../config';
 import nodemailer from 'nodemailer';
 
@@ -33,7 +33,7 @@ export const register = (req, res, next) => {
   const { email, password } = req.body;
 
 	if (!email || !password) {
-		res.status(422).send({error: 'Email and password are required.'});
+		res.status(422).send({ error: 'Email and password are required.' });
 	} else {
     User.findOne({ email })
       .then(existingUser => {
@@ -62,14 +62,15 @@ export const requireRole = (requiredRole) => {
 
     User.findById(req.user._id)
       .then(foundUser => {
-        if (foundUser.role === requiredRole) return next();
+        if (foundUser.role === requiredRole) {
+          return next();
+        } else {
+          return res.status(401).json({ error: 'You are not authorized to view this content.' });
+        }
       })
       .catch(err => {
         res.status(422).json({ error: 'No user was found.' })
         return next(err);
       });
-
-      return res.status(401).json({ error: 'You are not authorized to view this content.' });
-
 	}
 }

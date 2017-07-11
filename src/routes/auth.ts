@@ -1,11 +1,7 @@
 import { Router } from 'express';
 import * as AuthController from '../controllers/authentication';
-import passportService from '../config/passport';
 import { authenticate } from 'passport';
-
-passportService();
-
-const requireLogin = authenticate('local', { session: false })
+import { requireLogin } from '../strategies';
 
 export default Router()
   .post('/register', AuthController.register)

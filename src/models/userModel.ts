@@ -1,15 +1,15 @@
 import { Document, Schema, model } from 'mongoose';
-import bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcryptjs';
 
 export interface User extends Document {
   email: string,
-  password: string,
+  password?: string,
   role: string,
   profile: {
     displayName: string
   },
-  resetPasswordToken: string,
-  resetPasswordExpires: Date,
+  resetPasswordToken?: string,
+  resetPasswordExpires?: Date,
   comparePasswords: Function
 }
 
@@ -41,7 +41,7 @@ const UserSchema = new Schema({
 	resetPasswordExpires: {
 		type: Date
 	}
-}, {timestamps: true});
+}, { timestamps: true });
 
 UserSchema.pre('save', function (next) {
 	const SALT_FACTOR = 5;
