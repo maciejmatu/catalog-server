@@ -7,8 +7,8 @@ let config: {
 }
 
 export default config = {
-  secret: 'Hi2T5sT1tKz7094i66Cl',
-  database: process.env.DATABASE_URL || 'mongodb://admin:h3r2a8@ds149489.mlab.com:49489/catalog-app',
+  secret: process.env.SECRET || 'default',
+  database: process.env.DATABASE_URL || 'mongodb://localhost:27017/catalog-app',
   port: process.env.PORT || 9001,
   serverHost: process.env.HOST || 'http://localhost',
   clientURL: process.env.CLIENT_URL || 'http://localhost:9000'

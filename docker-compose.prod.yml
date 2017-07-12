@@ -4,7 +4,7 @@ services:
     restart: always
   web:
     ports:
-      - 2000:8080
+      - 80:80
     environment:
       NODE_ENV: production
       DATABASE_URL: mongodb://db:27017/catalogapp

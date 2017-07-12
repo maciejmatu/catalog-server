@@ -7,7 +7,7 @@ services:
     networks:
       - main
     ports:
-      - 2017:2017
+      - 27017:27017
     volumes:
       - data:/data/db
   web:
@@ -16,13 +16,13 @@ services:
     build: .
     image: catalog_app
     ports:
-      - 8080:8080
+      - 9001:9001
     networks:
       - main
     volumes:
       - ./:/www/app
     environment:
-      PORT: 8080
+      PORT: 9001
       DATABASE_URL: mongodb://db:27017/catalogapp
       NODE_ENV: development
     command: npm start
