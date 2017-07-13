@@ -6,7 +6,7 @@ function strategy(name) {
   return (req, res, next) => {
     authenticate(name, (err, user, info) => {
       if (err) return next(err);
-      if (!user) return res.status(401).json(info);
+      if (!user) return res.status(400).json(info);
 
       req.user = user;
       next();

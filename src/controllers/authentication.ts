@@ -30,7 +30,7 @@ export const login = (req, res, next) => {
 }
 
 export const register = (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password, displayName } = req.body;
 
 	if (!email || !password) {
 		res.status(422).send({ error: 'Email and password are required.' });
@@ -45,12 +45,12 @@ export const register = (req, res, next) => {
           email,
           password,
           profile: {
-            displayName: req.body.displayName
+            displayName: displayName
           }
         });
 
         user.save()
-          .then(user => respondWithToken(user, res))
+          .then(user => res.status(201).send('User created'))
           .catch(err => next(err));
       })
       .catch(err => next(err));
