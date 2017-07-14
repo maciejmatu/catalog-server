@@ -1,7 +1,7 @@
 import { Document, Schema, model } from 'mongoose';
 import * as bcrypt from 'bcryptjs';
 
-export interface User extends Document {
+export interface IUser extends Document {
   email: string,
   password?: string,
   role: string,
@@ -9,7 +9,7 @@ export interface User extends Document {
     displayName: string
   },
   resetPasswordToken?: string,
-  resetPasswordExpires?: Date,
+  resetPasswordExpires?: number,
   comparePasswords: Function
 }
 
@@ -61,4 +61,4 @@ UserSchema.methods.comparePasswords = function(candidatePassword, done) {
     .catch(err => done(err))
 }
 
-export default model<User>('User', UserSchema);
+export default model<IUser>('User', UserSchema);

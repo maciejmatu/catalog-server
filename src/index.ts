@@ -23,7 +23,9 @@ export class Server {
   public configure() {
     /* overwrite deprecated mongoose promise library */
     (<any>mongoose).Promise = global.Promise;
-    mongoose.connect(config.database);
+    mongoose.connect(config.database)
+      .then(() => console.log('Connected to database.'))
+      .catch(() => console.log('An error occured when connecting to server'));
 
     this.app.set('port', config.port);
     this.app.listen(config.port, _ => console.log(`API running on  ${ config.serverHost }:${ config.port }`));
